@@ -32,14 +32,14 @@ public class MovieController {
                 .map( movie -> modelMapper.map(movie, MovieDTO.class)).get();
     }
 
-    @GetMapping
+    @GetMapping("all")
     public List<MovieDTO> findAll() {
         return movieService
                 .findAll().stream().map(movie -> modelMapper.map(movie, MovieDTO.class)).collect(Collectors.toList());
     }
 
-    @GetMapping("min")
-    public WorstMovieDTO findMin() {
+    @GetMapping
+    public WorstMovieDTO findWinner() {
         WorstMovieDTO worstMovieDTO = new WorstMovieDTO();
 
         List<WinningProducerDTO> minWPDTO = movieService
