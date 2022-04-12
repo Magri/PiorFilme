@@ -40,7 +40,6 @@ public class MovieController {
 
     @GetMapping
     public WorstMovieDTO findWinner() {
-        WorstMovieDTO worstMovieDTO = new WorstMovieDTO();
 
         List<WinningProducerDTO> minWPDTO = movieService
                 .findMin().stream().map(movie -> modelMapper.map(movie, WinningProducerDTO.class)).collect(Collectors.toList());
@@ -48,6 +47,7 @@ public class MovieController {
         List<WinningProducerDTO> maxWPDTO = movieService
                 .findMax().stream().map(movie -> modelMapper.map(movie, WinningProducerDTO.class)).collect(Collectors.toList());
 
+        WorstMovieDTO worstMovieDTO = new WorstMovieDTO();
         worstMovieDTO.setMin(minWPDTO);
         worstMovieDTO.setMax(maxWPDTO);
 
