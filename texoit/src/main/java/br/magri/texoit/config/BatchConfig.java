@@ -37,7 +37,7 @@ public class BatchConfig {
     @Autowired
     private StepBuilderFactory stepBuilderFactory;
 
-    @Value("classPath:/csvDataInput/movielist (my).csv")
+    @Value("classPath:/csvDataInput/movielist (1).csv")
     private Resource inputResource;
 
     //@Bean
