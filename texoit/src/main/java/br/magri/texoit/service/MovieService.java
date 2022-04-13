@@ -13,6 +13,8 @@ public interface MovieService {
 
     List<Movie> findAll();
 
+    List<Movie> findByWinner(String winner);
+
     List<WinningProducer> findMin();
 
     List<WinningProducer> findMax();

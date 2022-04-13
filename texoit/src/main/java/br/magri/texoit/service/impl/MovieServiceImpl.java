@@ -29,6 +29,11 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
+    public List<Movie> findByWinner(String winner) {
+        return repository.findByWinner(winner);
+    }
+
+    @Override
     public List<WinningProducer> findMin() {
         return repository.findMin();
     }

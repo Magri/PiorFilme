@@ -1,5 +1,6 @@
 package br.magri.texoit.config;
 
+import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 
 import br.magri.texoit.model.entity.Movie;
@@ -17,15 +18,18 @@ import org.springframework.batch.item.file.LineMapper;
 import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
 import org.springframework.batch.item.file.mapping.DefaultLineMapper;
 import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.core.io.Resource;
 
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
+import org.springframework.stereotype.Component;
 
 @Configuration
 @EnableBatchProcessing
@@ -37,16 +41,19 @@ public class BatchConfig {
     @Autowired
     private StepBuilderFactory stepBuilderFactory;
 
+    @Autowired
+    private Environment environment;
+
     @Value("classPath:/csvDataInput/movielist (1).csv")
     private Resource inputResource;
 
     //@Bean
     public DataSource meuDataSource() {
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
-        dataSourceBuilder.driverClassName("org.h2.Driver");
-        dataSourceBuilder.url("jdbc:h2:mem:testdb");
-        dataSourceBuilder.username("SA");
-        dataSourceBuilder.password("");
+        dataSourceBuilder.driverClassName(environment.getProperty("spring.datasource.driverClassName"));
+        dataSourceBuilder.url(environment.getProperty("spring.datasource.url"));
+        dataSourceBuilder.username(environment.getProperty("spring.datasource.username"));
+        dataSourceBuilder.password(environment.getProperty("spring.datasource.password"));
         return dataSourceBuilder.build();
     }
     @Bean
