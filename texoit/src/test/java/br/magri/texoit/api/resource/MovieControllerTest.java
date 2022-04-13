@@ -21,9 +21,6 @@ public class MovieControllerTest {
     @Autowired
     private TestRestTemplate testRestTemplate;
 
-    @Autowired
-    private MovieRepository repository;
-
     @Test
     public void findWinnerTest() {
 
@@ -42,8 +39,8 @@ public class MovieControllerTest {
         WinningProducerDTO maxWinningProducerDTO = worstMovieDTO.getMax().get(0);
         Assertions.assertEquals(maxWinningProducerDTO.getProducer(), "Matthew Vaughn");
         Assertions.assertEquals(maxWinningProducerDTO.getInterval(), 13);
-        Assertions.assertEquals(maxWinningProducerDTO.getPreviousWin(), 2015);
-        Assertions.assertEquals(maxWinningProducerDTO.getFollowingWin(), 2002);
+        Assertions.assertEquals(maxWinningProducerDTO.getPreviousWin(), 2002);
+        Assertions.assertEquals(maxWinningProducerDTO.getFollowingWin(), 2015);
 
     }
 

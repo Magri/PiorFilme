@@ -7,6 +7,13 @@ public class WinningProducerDTO {
     private Integer previousWin;
     private Integer followingWin;
 
+    public WinningProducerDTO(String producer, Integer interval, Integer previousWin, Integer followingWin) {
+        this.producer = producer;
+        this.interval = interval;
+        this.previousWin = previousWin;
+        this.followingWin = followingWin;
+    }
+
     public String getProducer() {
         return producer;
     }
