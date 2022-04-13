@@ -45,22 +45,6 @@ public class MovieController {
                 .findByWinner("yes").stream().map(movie -> modelMapper.map(movie, MovieDTO.class)).collect(Collectors.toList());
     }
 
-    @GetMapping("old")
-    public WorstMovieDTO findWinnerOld() {
-
-        List<WinningProducerDTO> minWPDTO = movieService
-                .findMin().stream().map(movie -> modelMapper.map(movie, WinningProducerDTO.class)).collect(Collectors.toList());
-
-        List<WinningProducerDTO> maxWPDTO = movieService
-                .findMax().stream().map(movie -> modelMapper.map(movie, WinningProducerDTO.class)).collect(Collectors.toList());
-
-        WorstMovieDTO worstMovieDTO = new WorstMovieDTO();
-        worstMovieDTO.setMin(minWPDTO);
-        worstMovieDTO.setMax(maxWPDTO);
-
-        return worstMovieDTO;
-    }
-
     @GetMapping
     public WorstMovieDTO findWinner() {
 
@@ -70,9 +54,6 @@ public class MovieController {
         for (Movie movie : winnerMovie) {
             List<String> producers = Arrays.asList(movie.getProducers().replaceAll(", and | and ", ", ").split(", "));
 
-            for (String s : producers) {
-                System.out.println(s);
-            }
             for (Movie movie2 : winnerMovie) {
                 if (movie.getId() != movie2.getId() && movie.getYear() <= movie2.getYear()) {
                     List<String> producers2 = Arrays.asList(movie2.getProducers().replaceAll(", and | and ", ", ").split(", "));

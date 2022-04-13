@@ -2,7 +2,6 @@ package br.magri.texoit.service.impl;
 
 import br.magri.texoit.model.entity.Movie;
 import br.magri.texoit.model.repository.MovieRepository;
-import br.magri.texoit.model.view.WinningProducer;
 import br.magri.texoit.service.MovieService;
 import org.springframework.stereotype.Service;
 
@@ -33,13 +32,4 @@ public class MovieServiceImpl implements MovieService {
         return repository.findByWinner(winner);
     }
 
-    @Override
-    public List<WinningProducer> findMin() {
-        return repository.findMin();
-    }
-
-    @Override
-    public List<WinningProducer> findMax() {
-        return repository.findMax();
-    }
 }

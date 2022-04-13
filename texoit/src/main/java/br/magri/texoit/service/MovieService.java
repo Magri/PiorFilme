@@ -1,8 +1,6 @@
 package br.magri.texoit.service;
 
 import br.magri.texoit.model.entity.Movie;
-import br.magri.texoit.model.view.WinningProducer;
-import org.modelmapper.ModelMapper;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,9 +12,5 @@ public interface MovieService {
     List<Movie> findAll();
 
     List<Movie> findByWinner(String winner);
-
-    List<WinningProducer> findMin();
-
-    List<WinningProducer> findMax();
 
 }
